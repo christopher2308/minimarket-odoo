@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Categoría propia de seguridad de MiniMarket -->
+    <record id="module_category_minimarket" model="ir.module.category">
+        <field name="name">MiniMarket</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <!-- Usuario operativo de MiniMarket -->
+    <record id="group_minimarket_user" model="res.groups">
+        <field name="name">Empleado</field>
+        <field name="category_id" ref="minimarket.module_category_minimarket"/>
+    </record>
+
+    <!-- Usuario administrador de MiniMarket -->
+    <record id="group_minimarket_manager" model="res.groups">
+        <field name="name">Administrador</field>
+        <field name="category_id" ref="minimarket.module_category_minimarket"/>
+        <field name="implied_ids" eval="[(4, ref('minimarket.group_minimarket_user'))]"/>
+    </record>
+
+</odoo>

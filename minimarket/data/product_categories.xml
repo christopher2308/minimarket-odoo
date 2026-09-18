@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_category_alimentacion" model="product.category">
+        <field name="name">Alimentación</field>
+    </record>
+
+    <record id="product_category_bebidas" model="product.category">
+        <field name="name">Bebidas</field>
+    </record>
+
+    <record id="product_category_lacteos" model="product.category">
+        <field name="name">Lácteos</field>
+    </record>
+
+    <record id="product_category_congelados" model="product.category">
+        <field name="name">Congelados</field>
+    </record>
+
+    <record id="product_category_higiene_personal" model="product.category">
+        <field name="name">Higiene personal</field>
+    </record>
+
+    <record id="product_category_limpieza_hogar" model="product.category">
+        <field name="name">Limpieza del hogar</field>
+    </record>
+
+    <record id="product_category_otros" model="product.category">
+        <field name="name">Otros</field>
+    </record>
+
+</odoo>

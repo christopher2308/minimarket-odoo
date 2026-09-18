@@ -15,7 +15,7 @@ env/
 *.pyo
 filestore/
 sessions/
-data/
+
 
 # Odoo configuration - never commit real configuration
 odoo.conf
