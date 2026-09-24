@@ -18,6 +18,11 @@ class ProductTemplate(models.Model):
              'Se obtiene comparando el precio de venta con el coste.'
     )
 
+    last_purchase_price = fields.Float(
+        string='Último precio de compra',
+        help='Precio pagado en la última compra registrada para este producto.'
+    )
+
 
     @api.depends('standard_price', 'list_price')
     def _compute_minimarket_margin(self):

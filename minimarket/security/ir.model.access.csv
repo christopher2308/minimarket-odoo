@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_minimarket_purchase_price_change_wizard_user,access.minimarket.purchase.price.change.wizard.user,model_minimarket_purchase_price_change_wizard,minimarket.group_minimarket_user,1,1,1,1
+access_minimarket_purchase_price_change_wizard_line_user,access.minimarket.purchase.price.change.wizard.line.user,model_minimarket_purchase_price_change_wizard_line,minimarket.group_minimarket_user,1,1,1,1

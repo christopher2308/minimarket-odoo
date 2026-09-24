@@ -9,6 +9,11 @@
 
             <field name="categ_id" position="after">
                 <field name="minimarket_location"/>
+                <field name="minimarket_margin"/>
+                <field name="last_purchase_price"
+                       string="Último precio de compra"
+                       help="Precio pagado en la última compra registrada para este producto."
+                       readonly="1"/>
             </field>
 
         </field>

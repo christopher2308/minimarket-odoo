@@ -12,14 +12,22 @@ reutilizando y extendiendo la funcionalidad estándar de Odoo.
 """,
     'author': 'Christian Bustamante',
     'license': 'LGPL-3',
+
     'depends': [
-        'base', 'product'
+        'base',
+        'product',
+        'purchase',
     ],
+
 'data': [
     'security/minimarket_groups.xml',
+    'security/ir.model.access.csv',
     'data/product_categories.xml',
     'views/product_template_views.xml',
+    'views/purchase_order_views.xml',
+    'views/purchase_price_change_views.xml',
 ],
+
     'installable': True,
     'application': True,
 }
