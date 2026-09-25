@@ -17,6 +17,7 @@ reutilizando y extendiendo la funcionalidad estándar de Odoo.
         'base',
         'product',
         'purchase',
+        'sale_stock'
     ],
 
 'data': [
@@ -26,6 +27,8 @@ reutilizando y extendiendo la funcionalidad estándar de Odoo.
     'views/product_template_views.xml',
     'views/purchase_order_views.xml',
     'views/purchase_price_change_views.xml',
+    'views/sale_order_views.xml',
+    'views/sale_stock_warning_views.xml',
 ],
 
     'installable': True,
