@@ -52,7 +52,8 @@
             id="menu_minimarket_reports"
             name="Informes"
             sequence="50"
-            groups="minimarket.group_minimarket_user,minimarket.group_minimarket_manager"/>
+            groups="minimarket.group_minimarket_user,minimarket.group_minimarket_manager"
+            web_icon="minimarket,static/description/informe_icon.png"/>
 
     <!-- Histórico de ventas -->
     <menuitem
