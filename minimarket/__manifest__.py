@@ -29,6 +29,8 @@ reutilizando y extendiendo la funcionalidad estándar de Odoo.
     'views/purchase_price_change_views.xml',
     'views/sale_order_views.xml',
     'views/sale_stock_warning_views.xml',
+    'data/minimarket_stock_cron.xml',
+    'views/sale_report_views.xml',
 ],
 
     'installable': True,

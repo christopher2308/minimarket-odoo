@@ -23,6 +23,73 @@ class ProductTemplate(models.Model):
         help='Precio pagado en la última compra registrada para este producto.'
     )
 
+    minimarket_min_stock = fields.Float(
+        string='Stock mínimo',
+        default=0.0,
+        help='Cantidad mínima de unidades que se recomienda mantener en stock. '
+             'Si el stock disponible es igual o inferior a este valor, '
+             'MiniMarket generará un aviso de reposición.'
+    )
+
+    def _check_minimarket_low_stock(self):
+        products = self.search([
+            ('minimarket_min_stock', '>', 0),
+            ('is_storable', '=', True),
+        ])
+
+        low_stock_products = []
+
+        for product in products:
+            stock_bajo = product.qty_available <= product.minimarket_min_stock
+
+            if stock_bajo:
+                low_stock_products.append(product)
+
+        if low_stock_products and self.env.user.email:
+            rows = ''
+
+            for product in low_stock_products:
+                rows += (
+                        '<tr>'
+                        '<td>%s</td>'
+                        '<td>%.2f</td>'
+                        '<td>%.2f</td>'
+                        '</tr>'
+                        % (
+                            product.display_name,
+                            product.qty_available,
+                            product.minimarket_min_stock,
+                        )
+                )
+
+            body_html = (
+                    '<p>Buenos días,</p>'
+                    '<p>Estos productos tienen actualmente un stock '
+                    'igual o inferior al mínimo establecido:</p>'
+                    '<table border="1" cellpadding="5" cellspacing="0">'
+                    '<thead>'
+                    '<tr>'
+                    '<th>Producto</th>'
+                    '<th>Stock disponible</th>'
+                    '<th>Stock mínimo</th>'
+                    '</tr>'
+                    '</thead>'
+                    '<tbody>'
+                    '%s'
+                    '</tbody>'
+                    '</table>'
+                    '<p>Se recomienda revisar las necesidades de reposición.</p>'
+                    % rows
+            )
+
+            mail_values = {
+                'subject': 'MiniMarket - Informe de stock bajo',
+                'body_html': body_html,
+                'email_to': self.env.user.email,
+            }
+
+            mail = self.env['mail.mail'].sudo().create(mail_values)
+            mail.send()
 
     @api.depends('standard_price', 'list_price')
     def _compute_minimarket_margin(self):

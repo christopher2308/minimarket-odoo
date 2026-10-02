@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <!-- Vista lista del histórico de ventas -->
+    <record id="view_minimarket_sale_report_list" model="ir.ui.view">
+        <field name="name">minimarket.sale.report.list</field>
+        <field name="model">sale.order.line</field>
+        <field name="arch" type="xml">
+            <list string="Histórico de ventas" create="0" edit="0" delete="0">
+                <field name="order_id"/>
+                <field name="minimarket_sale_date"/>
+                <field name="minimarket_customer"/>
+                <field name="product_id"/>
+                <field name="product_uom_qty"/>
+                <field name="price_unit"/>
+                <field name="minimarket_cost"/>
+                <field name="price_subtotal"/>
+                <field name="minimarket_total_cost"/>
+                <field name="minimarket_margin"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Vista pivote del histórico de ventas -->
+    <record id="view_minimarket_sale_report_pivot" model="ir.ui.view">
+        <field name="name">minimarket.sale.report.pivot</field>
+        <field name="model">sale.order.line</field>
+        <field name="arch" type="xml">
+            <pivot string="Análisis de ventas">
+                <field name="product_id" type="row"/>
+                <field name="order_id" type="row"/>
+                <field name="product_uom_qty" type="measure"/>
+                <field name="price_subtotal" type="measure"/>
+                <field name="minimarket_total_cost" type="measure"/>
+                <field name="minimarket_margin" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <!-- Acción -->
+    <record id="action_minimarket_sale_report" model="ir.actions.act_window">
+        <field name="name">Histórico de ventas</field>
+        <field name="res_model">sale.order.line</field>
+        <field name="view_mode">list,pivot</field>
+        <field name="view_id" ref="view_minimarket_sale_report_list"/>
+        <field name="domain">[('order_id.state', 'in', ['sale', 'done'])]</field>
+    </record>
+
+    <!-- Menú principal de informes -->
+    <menuitem
+            id="menu_minimarket_reports"
+            name="Informes"
+            sequence="50"
+            groups="minimarket.group_minimarket_user,minimarket.group_minimarket_manager"/>
+
+    <!-- Histórico de ventas -->
+    <menuitem
+            id="menu_minimarket_sale_report"
+            name="Histórico de ventas"
+            parent="menu_minimarket_reports"
+            action="action_minimarket_sale_report"
+            sequence="10"
+            groups="minimarket.group_minimarket_user,minimarket.group_minimarket_manager"/>
+</odoo>

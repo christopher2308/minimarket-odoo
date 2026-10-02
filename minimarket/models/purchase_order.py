@@ -41,7 +41,7 @@ class PurchaseOrder(models.Model):
 
                 old_price = product_template.standard_price
                 new_price = line.price_unit
-                print("MINIMARKET DEBUG - Precio compra:", new_price)
+
 
                 # Es la funcion anterior de arriba utilizada para comprobar si hubo una compra anterior
                 has_previous_purchase = self._has_previous_real_purchase(product)
@@ -109,7 +109,7 @@ class PurchaseOrder(models.Model):
         })
 
         for change in changes:
-            print("MINIMARKET DEBUG - Datos del wizard:", change)
+
 
             self.env['minimarket.purchase.price.change.wizard.line'].create({
                 'wizard_id': wizard.id,

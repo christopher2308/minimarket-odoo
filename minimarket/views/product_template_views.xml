@@ -14,6 +14,7 @@
                        string="Último precio de compra"
                        help="Precio pagado en la última compra registrada para este producto."
                        readonly="1"/>
+                <field name="minimarket_min_stock"/>
             </field>
 
         </field>
